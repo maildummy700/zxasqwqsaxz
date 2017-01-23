@@ -1,0 +1,15 @@
+1) Hover can't be possible in UI mode in Behat.
+2) HTML reports can't be generated in behat >3.0.0
+3) In UI mode, if you looking for any text it wont search by implicit method of
+"Then I should see text matching"  instead it searches with "Then i should see" - unknown error
+4) We can't see status code in Browser mode because it is not available in selenium2Driver
+5) Sometimes the feature file wont run with goutte driver, it will work if you add "www." prefix to your url like "http://"www"url" and issue will be resolved the issue is not known yet!!
+6)
+
+
+
+
+
+
+
+        5 + 5 + 5 = 550

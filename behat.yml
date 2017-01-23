@@ -1,0 +1,453 @@
+default:
+  suites:
+    #entireSuite:
+      #paths: [%paths.base%/features/Webinar_Landing_Page.feature,%paths.base%/features/Webinars_Inner_Page_Past_Webinar.feature,%paths.base%/features/Webinars_Inner_Page_Upcoming_Webinar.feature,%paths.base%/features/Blog_Landing_Page.feature,%%paths.base%/features/Blog_Inner_Page.feature,%paths.base%/features/Career_Landing_Page.feature,%paths.base%/features/Career_Inner_Page.feature,%paths.base%/features/Drupal_Landing_Page.feature,%paths.base%/features/Drupal_Inner_Page.feature,%paths.base%/features/Solutions_Landing_Page.feature,%paths.base%/features/Solutions_Inner_Page.feature,%paths.base%/features/Process_Landing_Page.feature,%paths.base%/features/Technologies_Landing_page.feature]
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  formatters:
+    pretty: true
+    html:
+      output_path: %paths.base%/build/html
+  extensions:
+    Behat\MinkExtension:
+      goutte:
+        guzzle_parameters:
+            verify: false
+            curl.options:
+                  CURLOPT_SSL_VERIFYPEER: false
+                  CURLOPT_CERTINFO: false
+                  CURLOPT_TIMEOUT: 120
+            ssl.certificate_authority: false
+      browser_name: chrome
+      selenium2:
+        wd_host: "http://localhost:4444/wd/hub"
+      javascript_session: selenium2
+      base_url: http://stage-k44o66ej2kfjq.eu.platform.sh
+      #base_url: http://stage-k44o66ej2kfjq.eu.platform.sh
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: "drupal"
+
+      region_map:
+        # Homepage
+        page_class: '.canvas'
+        homepage_menu_links: '.main-menu-container'
+        homepage_menu_links_left: '#block-sitebranding-2'
+        homepage_menu_links_right: '#block-srijan-ultimenumainnavigation'
+        homepage_menu_links_drupal: '#ultimenu-main>li:nth-child(2)'
+        homepage_menu_links_solution: '#ultimenu-main>li:nth-child(3)'
+        homepage_menu_links_technology: '#ultimenu-main>li:nth-child(4)'
+        homepage_menu_links_process: '#ultimenu-main>li:nth-child(5)'
+        homepage_menu_links_client: '#ultimenu-main>li:nth-child(6)'
+        homepage_menu_links_contact: '#ultimenu-main>li:nth-child(7)'
+        homepage_slider: '#header'
+        homepage_slider_class: '#block-srijan-views-block-capabilities-block-1'
+        #homepage capablity block
+        homepage_capability_block: '#block-srijan-views-block-capabilities-block-1'
+        homepage_capability_block_1: '.view-id-capabilities>div>div.horizontal>.row>.col-4:nth-child(1)'
+        homepage_capability_block_2: '.view-id-capabilities>div>div.horizontal>.row>.col-4:nth-child(2)'
+        homepage_capability_block_3: '.view-id-capabilities>div>div.horizontal>.row>.col-4:nth-child(3)'
+        #homepage our process block
+        homepage_our_process_block: '#block-views-block-our-process-home-page-block-1'
+        homepage_our_process_column_1: '.page-wrap>.col-3:nth-child(1)'
+        homepage_our_process_column_2: '.page-wrap>.col-3:nth-child(2)'
+        homepage_our_process_column_3: '.page-wrap>.col-3:nth-child(3)'
+        homepage_our_process_column_4: '.page-wrap>.col-3:nth-child(4)'
+        homepage_our_process_learn_more: '.view-id-our_process_home_page>.more-link'
+        #homepage Featured Case Studies
+        homepage_feature_case_studies_block: '#block-views-block-related-case-study-block-block-2'
+        homepage_feature_case_studies_column_1: '.cs-col-wrap:nth-child(1)'
+        homepage_feature_case_studies_column_2: '.cs-col-wrap:nth-child(2)'
+        homepage_feature_case_studies_column_3: '.cs-col-wrap:nth-child(3)'
+        homepage_feature_case_studies_more_links: '.case-study-wrap>.more-link'
+        #homepage thought articles block
+        homepage_thought_articles_block: '#block-views-block-thought-articles-view-block-1-2'
+        homepage_thought_articles_column_1: '.article-wrap>.col-4:nth-child(1)'
+        homepage_thought_articles_column_2: '.article-wrap>.col-4:nth-child(2)'
+        homepage_thought_articles_column_3: '.article-wrap>.col-4:nth-child(3)'
+        #homepage request a proposal form
+        request_a_proposal_form_class: '#block-sitewidecontactform'
+        #############################
+        # header regions
+        header_menu_bar: '.top-banner'
+        header_primary_menu_bar: '.main-menu-container'
+        header_primary_menu_bar_left_site_branding: '.main-menu-container>div>.logo'
+        header_primary_menu_bar_right_menu_links: '#block-srijan-ultimenumainnavigation'
+        header_primary_menu_bar_drupal_menu: '#ultimenu-main>li:nth-child(2)'
+        header_primary_menu_bar_solution_menu: '#ultimenu-main>li:nth-child(3)'
+        header_primary_menu_bar_technology_menu: '#ultimenu-main>li:nth-child(4)'
+        header_primary_menu_bar_process_menu: '#ultimenu-main>li:nth-child(5)'
+        header_primary_menu_bar_client_menu: '#ultimenu-main>li:nth-child(6)'
+        header_primary_menu_bar_contact_menu: '#ultimenu-main>li:nth-child(7)'
+        #header secondary menu bar
+        secondary_orange_menu_bar: '.top-banner'
+        header_secondary_orange_menu_bar: '.top-band'
+        header_secondary_orange_left_upcoming_webinar: '.top-band>div>.col-5'
+        header_secondary_orange_right_menu_links: '.top-band>div>.header-top-right'
+        header_secondary_orange_right_menu_webinar: '#block-stickymenu>ul>li:nth-child(1)'
+        header_secondary_orange_right_menu_blog: '#block-stickymenu>ul>li:nth-child(2)'
+        header_secondary_orange_right_menu_about: '#block-stickymenu>ul>li:nth-child(3)'
+        header_secondary_orange_right_menu_career: '#block-stickymenu>ul>li:nth-child(4)'
+        #############################
+        # footer regions
+        footer_class: '.site-footer'
+        footer_top: '.site-footer__top'
+        #footer address block
+        footer_top_address_block: '#block-officelocationsofficelocationsofficelocations'
+        #footer solution block
+        footer_top_solution_block: '#block-solutionsmenu-2'
+        footer_top_solution_list_enterprise_solution: '.menu>li:nth-child(1)>a'
+        footer_top_solution_list_performance_audit: '.menu>li:nth-child(2)>a'
+        footer_top_solution_list_scrum_teams: '.menu>li:nth-child(3)>a'
+        footer_top_solution_list_continuous_development: '.menu>li:nth-child(4)>a'
+        footer_top_solution_list_QA_automation: '.menu>li:nth-child(5)>a'
+        footer_top_solution_list_E_commerce: '.menu>li:nth-child(6)>a'
+        footer_top_solution_list_UI_UX_solutions: '.menu>li:nth-child(7)>a'
+        footer_top_solution_list_front_end_audit: '.menu>li:nth-child(8)>a'
+        footer_top_solution_list_drupal_8_training: '.menu>li:nth-child(9)>a'
+        #footer hub block
+        footer_top_Hub_block: '#block-srijan-footerhub'
+        footer_top_Hub_list_clients: '#block-srijan-footerhub>ul>li:nth-child(1)'
+        footer_top_Hub_list_srijan_wednesday_webinar: '#block-srijan-footerhub>ul>li:nth-child(2)'
+        #footer about block
+        footer_top_about_block: '#block-srijan-footerabout'
+        footer_top_about_list_about_us: '#block-srijan-footerabout>ul>li:nth-child(1)'
+        footer_top_about_list_blog: '#block-srijan-footerabout>ul>li:nth-child(2)'
+        footer_top_about_list_contact_us: '#block-srijan-footerabout>ul>li:nth-child(3)'
+        #footer bottom
+        footer_bottom: '.site-footer__bottom'
+        #footer bottom keep in touch
+        footer_bottom_keep_in_touch: '#block-keepintouch-3'
+        #footer newsletter form
+        footer_bottom_newsletter_form: '#block-newsletter-form'
+        #footer trademark
+        footer_bottom_trademark: '#block-srijan-trademark'
+        #############################
+        # Drupal page
+        drupal_page_banner: '.featured-top__inner'
+        drupal_page_heading: '.header-content-wrap>h1'
+        drupal_page_services_block: '#block-views-block-solution-s-menu-view-block-2'
+        drupal_page_each_service_column: '.item-listing>div:nth-child(1)'
+        drupal_page_testinomail_block: '#block-views-block-testimonial-block-block-4'
+        drupal_page_drupal_give_block: '#block-mainpagecontent'
+        drupal_page_drupal_give_heading: '.paragraph_block_title'
+        #############################
+        #drupal inner page
+        drupal_inner_page_class: '#content'
+        drupal_inner_page_left_menu: '.sidebar_first>aside'
+        drupal_inner_page_right_main: '#main-wrapper'
+        drupal_inner_page_right_main_content: '..block-views-blocksolutions-detail-page-block-2'
+        drupal_inner_page_right_main_download_pdf: '#block-views-block-solutions-download-pdf-block-1'
+        drupal_inner_page_right_main_download_pdf_download_button: '.download-action'
+        drupal_inner_page_right_main_related_process: '#block-views-block-related-process-block-block-1'
+        drupal_inner_page_right_main_related_process_each_1: '.row>.rc-wrap:nth-child(1)'
+        drupal_inner_page_right_main_related_process_each_2: '.row>.rc-wrap:nth-child(2)'
+        drupal_inner_page_right_main_related_process_each_3: '.row>.rc-wrap:nth-child(3)'
+        #############################
+        #solution page
+        solution_page_banner: '.view-dynamic-generic-banner'
+        solution_page_main_block: '.sub-page-listing'
+        solution_page_main_block_row: '.cols-3>.row:nth-child(1)'
+        solution_page_main_block_column_1: '.item-listing:nth-child(1)>.col-4:nth-child(1)'
+        solution_page_main_block_column_2: '.item-listing:nth-child(1)>.col-4:nth-child(2)'
+        solution_page_main_block_column_3: '.item-listing:nth-child(1)>.col-4:nth-child(3)'
+        solution_page_testinomail_block: '#block-views-block-testimonial-block-block-4'
+        #############################
+        #solution inner page
+        solution_inner_page_class: '#content'
+        solution_inner_page_left_menu: '#block-solutionsmenu'
+        solution_inner_page_right_main: '#main-wrapper'
+        solution_inner_page_right_main_heading: '#main-wrapper>h2'
+        solution_inner_page_right_main_pdf_block: '#block-views-block-solutions-download-pdf-block-1'
+        solution_inner_page_right_main_related_process: '#block-views-block-related-process-block-block-1'
+        solution_inner_page_right_main_related_process_each_1: '.row>.rc-wrap:nth-child(1)'
+        solution_inner_page_right_main_related_process_each_2: '.row>.rc-wrap:nth-child(2)'
+        solution_inner_page_right_main_related_process_each_3: '.row>.rc-wrap:nth-child(3)'
+        #############################
+        #Technologies page
+        technology_page_top: '.featured-top'
+        technology_page_content: '#content'
+        technology_page_capability_block: '#block-views-block-capabilities-block-3'
+        technology_page_capability_row: '.view-content>.cols-3'
+        technology_page_capability_each_column: '.col-4:nth-child(1)'
+        technology_page_testinomail_block: '#block-views-block-testimonial-block-block-4'
+        #############################
+        #Technologies inner page
+        technology_inner_page_class: '.ps-wrap'
+        technology_inner_page_left_menu: '..process-side-nav'
+        #############################
+        # process page
+        process_page_class: '#content'
+        process_page_sidebar: '.sidebar_first'
+        process_page_right_content: '#main-wrapper'
+        process_page_right_content_description: '#block-views-block-process-page-block-2'
+        process_page_right_main_related_process: '#block-views-block-related-process-block-block-1'
+        process_page_right_main_related_process_each_1: '.row>.rc-wrap:nth-child(1)'
+        process_page_right_main_related_process_each_2: '.row>.rc-wrap:nth-child(2)'
+        process_page_right_main_related_process_each_3: '.row>.rc-wrap:nth-child(3)'
+        #############################
+        #client_page
+        client_page_class: '.page-wrapper'
+        client_page_banner: '.featured-top__inner'
+        client_page_banner_header: '.header-content-wrap'
+        client_page_main: '#block-views-block-client-case-studies-block-1'
+        client_page_filter: '.view-filters'
+        client_page_content_block: '.horizontal'
+        client_page_content_block_each_column: '.row:nth-child(1)>.cs-col-wrap:nth-child(1)'
+        #############################
+        #Client Inner page
+        client_inner_page_class: '.page-wrapper'
+        client_inner_page_banner: '.featured-top__inner'
+        client_inner_page_banner_main_text: '.page-wrap>.main-text'
+        client_inner_page_main: '#content'
+        client_inner_page_bottom: '.featured-bottom'
+        client_inner_page_related_case_studies_block: '.inner-case-study'
+        client_inner_page_related_case_studies_block_column: '.row>.cs-col-wrap:nth-child(1)'
+        client_inner_page_client_logo_block: '.client-logo-list'
+        #############################
+        #Contact page
+        contact_page_class: '.ps-wrap'
+        contact_page_form: '.sidebar_first'
+        contact_page_main: '#main-wrapper'
+        contact_page_india_address: '.India'
+        address: 'div.tab-links.col-4'
+        contact_page_india_address_active: '.India>.location>.col-8>.col-4'
+        contact_page_india_address_active_icon: '.India>.location>.col-4'
+        contact_page_india_address_location: '.India>.location'
+        contact_page_india_address_location_right: '.India>.location>.side-tabs'
+        contact_page_america_address: '.America'
+        contact_page_america_address_active: '.America>.location>.col-8>.col-4'
+        contact_page_america_address_active_icon: '.America>.location>.col-4'
+        contact_page_america_address_location: '.America>.location'
+        contact_page_america_address_location_right: '.America>.location>.side-tabs'
+        contact_page_south_east_asia_address: '.South.East'
+        contact_page_south_east_asia_address_active: '.South>.location>.col-8>.col-4'
+        contact_page_south_east_asia_ddress_active_icon: '.South>.location>.col-4'
+        contact_page_south_east_asia_address_location: '.South.East>.location'
+        contact_page_south_east_asia_address_location_right: '.South.East>.location>.side-tabs'
+        #############################
+        # webinars page
+        webinar_page_top_banner: 'figure.parallax'
+        webinar_page_upcoming_webinar_heading: '.upcoming-webinars>h1'
+        webinar_page_upcoming_webinar: '.upcoming-webinars>div'
+        webinar_page_upcoming_webinar_details: '.webinar-details'
+        webinar_page_featured_webinar_block: '.featured-webinar'
+        webinar_page_featured_webinar_block_column: '.cols-4>div>div.col-4:nth-child(1)'
+        webinar_page_featured_webinar_block_column_Watch_webinar : '.cols-4>div>div.col-4:nth-child(1)>a'
+        webinar_page_featured_webinar_footer: '.section-cta'
+        webinar_page_social_block: '#block-socialsblock'
+        webinar_page_social_block_1: '.social-webinar>div>div>.col-4:nth-child(1)'
+        webinar_page_social_block_2: '.social-webinar>div>div>.col-4:nth-child(2)'
+        webinar_page_social_block_3: '.social-webinar>div>div>.col-4:nth-child(3)'
+        #############################
+        # webinar inner page
+        webinar_inner_page: '.ps-wrap'
+        webinar_inner_page_upcoming_webinar_detail: '#main>section'
+        webinar_inner_right_sidebar: '.sidebar_second'
+        webinar_inner_upcoming_webinar_banner: '.wrap'
+        webinar_inner_upcoming_webinar_body: '.upcoming-webinars'
+        webinar_inner_about_author: ".about-speaker"
+        webinar_page_sidebar: '.sidebar_second'
+        webinar_page_sidebar_join_this_webinar: '#block-views-block-webinar-sharpspring-form-block-1>h2'
+        webinar_page_sidebar_join_this_webinar_form: '#yamlform-submission-webinar-registration-form-form'
+        webinar_page_sidebar_upcoming_webinar: '.block-views-blockwebinar-block-4'
+        webinar_page_sidebar_featured_webinar: '#block-views-block-featured-webinars-block-block-1'
+        webinar_page_Related_webinar_block: '.block-views-blockrelated-webinar-for-webinar-detail-page-block-1'
+        webinar_page_Related_webinar_block_column: '.views-view-grid>.row>div:nth-child(1)'
+        #############################
+        # webinars past webinars
+        webinar_past_webinars_class: '#main-wrapper'
+        webinar_past_webinars_block: '#block-views-block-webinar-block-5'
+        webinar_past_webinars_filter_class: ''
+        webinar_past_webinars_all_webinars: '#block-views-block-webinar-block-5'
+        webinar_past_webinars_row_1: '.cols-3>.row:nth-child(1)'
+        webinar_past_webinars_row_2: '.cols-3>.row:nth-child(2)'
+        webinar_past_webinars_row_3: '.cols-3>.row:nth-child(3)'
+        webinar_past_webinars_coloum_1: '.cols-3>.row:nth-child(1)>div:nth-child(1)'
+        ##############################
+        # webinar inner past webinar page
+        webinar_inner_page: '.ps-wrap'
+        webinar_inner_page_past_webinar_detail: '#main>section'
+        webinar_inner_past_webinar_video: '.upload-video'
+        webinar_inner_page_past_webinar_body: '.webinar-details'
+        webinar_inner_right_sidebar: '.sidebar_second'
+        webinar_inner_about_author: ".about-speaker"
+        webinar_page_sidebar: '.sidebar_second'
+        #############################
+        #Blog page
+        blog_page_post_image: '.featured-posts-wrap'
+        blog_page_content: '#content'
+        blog_page_post_image: '#block-views-block-listing-featured-thought-articles-block-1'
+        blog_page_post_image_text: '.post-preview-wrap>div'
+        blog_page_related_blog: '#block-views-block-listing-of-thought-articles-blogs-block-3'
+        blog_page_related_blog_each: '.blog-post-item:nth-child(1)'
+        blog_page_related_blog_load_more: '.js-pager__items.pager'
+        blog_page_sidebar: '.sidebar_second'
+        blog_page_sidebar_popular_article: '#block-views-block-popular-articles-blog-page-block-1'
+        blog_page_sidebar_categories: "#block-views-block-topic-block-for-listing-page-block-1"
+        blog_page_scroll_class: '.views-infinite-scroll-content-wrapper'
+        #############################
+        #Blog Inner page
+        blog_inner_page_class: '.page-wrapper'
+        blog_inner_page_banner: '.blog-detail-page-banner'
+        blog_inner_page_banner_main_text: '.header-banner>div>.main-text'
+        blog_inner_page_main_block: '#main'
+        blog_inner_page_main_content: 'node__content'
+        blog_inner_page_main_share: '.postActionsBar-content'
+        blog_inner_page_main_commnet: '.comment-wrapper'
+        #############################
+        #About-us page
+        about_us_page_resource_block: '#block-views-block-resource-count-block-block-1'
+        about_us_page_resource_block_row: '.resource-count-view>div>div>div:nth-child(1)'
+        about_us_page_resource_block_column: '.row:nth-child(1)>.col-3:nth-child(1)'
+        about_us_page_About_Us_block: '#block-mainpagecontent'
+        about_us_page_About_Us_block_1: '.node__content>div>div>div:nth-child(1)'
+        #############################
+        #career page
+        career_page_class: '.page-wrapper'
+        career_page_top: '.featured-top'
+        career_page_current_opportunity_block: '.current-opportunities'
+        career_page_current_opportunity_block_footer: '.view-id-current_opportunities_block>.more-link>a'
+        career_page_curent_opportunity_block_job_list: '.cols-12>div>div.row:nth-child(1)'
+        career_page_our_work_culture_block: '#block-views-block-our-work-culture-block-1'
+        career_page_our_work_culture_block_up_row: '.our-work-culture>div>div>div:nth-child(1)'
+        career_page_our_work_culture_block_up_row_each: '.cols-3>div:nth-child(1)>div.col-4:nth-child(1)'
+        career_page_our_work_culture_block_down_row_each: '.cols-3>div:nth-child(2)>div.col-4:nth-child(1)'
+        career_page_our_work_culture_block_down_row: '.our-work-culture>div>div>div:nth-child(2)'
+        home_page_footer_menu: '.site-footer__top.clearfix'
+        #############################
+        #career inner page
+        career_inner_page_content: '#main'
+        career_inner_page_main_content: '#block-mainpagecontent'
+        career_inner_page_form: '#block-form'
+        career_inner_page_form_heading: '#block-form>h2'
+        #############################
+        #Forms - Request a proposal
+        request_a_proposal_form: '#contact-message-feedback-form'
+        request_a_proposal_form_name_field: '#edit-field-your-name-wrapper'
+        request_a_proposal_form_email_field: '#edit-field-e-mail-address-wrapper'
+        request_a_proposal_form_how_can_we_help_you_field: '#edit-field-how-can-we-help-you-wrapper'
+        # Write to Us form
+        write_to_us_form: '#block-sitewidecontactform-2'
+        write_to_us_name_field: '#edit-field-your-name-wrapper'
+        write_to_us_email_field: '#edit-field-e-mail-address-wrapper'
+        write_to_us_how_can_we_help_you_field: '#edit-field-how-can-we-help-you-wrapper'
+        #Build your career with us form
+        build_you_career_with_us_form: '#block-form-2'
+        build_you_career_with_us_name_field: '.js-form-item-your-name'
+        build_you_career_with_us_number_field: '.js-form-item-contact-number'
+        build_you_career_with_us_email_field: '.js-form-item-e-mail-address'
+        build_you_career_with_us_resume_field: '.js-form-item-upload-cv'
+        build_you_career_with_us_portfolio_link_field: '.js-form-item-portfolio-github-link'
+        #Apply for this job
+        apply_for_this_job_form: '#block-form'
+        apply_for_this_job_name_field: '.js-form-item-name'
+        apply_for_this_job_email_field: '.js-form-item-email-address'
+        apply_for_this_job_number_field: '.js-form-item-contact-number'
+        apply_for_this_job_portfolio_link_field: '.js-form-item-portfolio-github-link'
+        apply_for_this_job_resume_field: '.js-form-item-upload-resume'
+        #download PDF and newslettersubscription
+        download_pdf_form: '.download-form'
+        newslettersubscription_form: '#block-newsletter-form'
+        #############################
+        #thank you page
+        thankyou_page_class: '.ps-wrap'
+        ##############################
+        #marketing qa automation
+        marketing_qa_automation_page_class: '.ps-wrap'
+        marketing_qa_automation_left_block: '.sidebar_first'
+        marketing_qa_automation_left_block_form: '#contact-message-feedback-form'
+        marketing_qa_automation_right_block_class: '#main-wrapper'
+        marketing_qa_automation_right_block_pdf_block: '#block-views-block-solutions-download-pdf-block-1'
+        marketing_qa_automation_right_block_pdf_block_download_option: '.pdf-download-large'
+        #############################
+    emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
+      name: html
+      renderer: Twig,Behat2
+      file_name: Report
+      print_args: true
+      print_outp: true
+      loop_break: true
+
+# add "-p local" to run tests against the production web server
+local:
+   extensions:
+     Behat\MinkExtension:
+       base_url: "http://srijand8.local"
+
+# add "-p dev" to run tests against the production web server
+dev:
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://dev-k44o66ej2kfjq.eu.platform.sh'
+
+# add "-p dev_phantomjs" to run tests against the production web server
+dev_phantomjs:
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://dev-k44o66ej2kfjq.eu.platform.sh'
+      goutte: ~
+      selenium2:
+        wd_host: "http://localhost:4444/wd/hub"
+
+# add "-p dev_chrome" to run tests on chrome
+dev_chrome:
+  extensions:
+    Behat\MinkExtension:
+      base_url: "http://dev-k44o66ej2kfjq.eu.platform.sh"
+      goutte: ~
+      selenium2:
+        wd_host: "http://localhost:8643/wd/hub"
+
+# add "-p stage" to run tests against the production web server
+stage:
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://stage-k44o66ej2kfjq.eu.platform.sh'
+
+# add "-p stage_phantomjs" to run tests against the production web server
+stage_phantomjs:
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://stage-k44o66ej2kfjq.eu.platform.sh'
+      goutte: ~
+      selenium2:
+        wd_host: "http://localhost:4444/wd/hub"
+
+# add "-p stage_chrome" to run tests on chrome
+stage_chrome:
+  extensions:
+    Behat\MinkExtension:
+      base_url: "http://stage-k44o66ej2kfjq.eu.platform.sh"
+      goutte: ~
+      selenium2:
+        wd_host: "http://localhost:8643/wd/hub"
+
+# add "-p live" to run tests against the production web server
+live:
+   extensions:
+     Behat\MinkExtension:
+       base_url: "http://srijan.net"
+
+# add "-p live_phantomjs" to run tests against the production web server
+live_phantomjs:
+  extensions:
+    Behat\MinkExtension:
+      base_url: "http://srijan.net"
+      goutte: ~
+      selenium2:
+        wd_host: "http://localhost:4444/wd/hub"
+
+# add "-p live_chrome" to run tests against the production web server
+live_chrome:
+  extensions:
+    Behat\MinkExtension:
+      base_url: "http://srijan.net"
+      goutte: ~
+      selenium2:
+        wd_host: "http://localhost:8643/wd/hub"
