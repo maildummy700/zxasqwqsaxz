@@ -28,7 +28,7 @@ Feature: Automation for PAbout Us Page to reduce manual effort of manual testing
     Then print current URL
 
     ##Then I should see CSS ".main-circle" in the "about_us_page_resource_block_column" region
-    Then I should see CSS ".name" in the "about_us_page_resource_block_column" region
+    ##Then I should see CSS ".name" in the "about_us_page_resource_block_column" region
     Then I should see CSS ".grey-circle" in the "about_us_page_resource_block_column" region
     Then I should see CSS ".count" in the "about_us_page_resource_block_column" region
 
