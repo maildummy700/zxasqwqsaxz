@@ -20,7 +20,7 @@ Feature: Automation for Contact  page to check various static things to reduce m
 
     Then I should see CSS "#block-sitewidecontactform-2" in the "contact_page_form" region
     #And I should see the heading "Write to us" in the "contact_page_form" region
-    #And I should see CSS "#contact-message-feedback-form" in the "contact_page_form" region
+    And I should see CSS "#contact-message-feedback-form" in the "contact_page_form" region
 
 
 
