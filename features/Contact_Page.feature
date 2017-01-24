@@ -18,8 +18,8 @@ Feature: Automation for Contact  page to check various static things to reduce m
     And I should see CSS ".sidebar_first" in the "contact_page_class" region
 
 
-    #Then I should see CSS "#block-sitewidecontactform-2" in the "contact_page_form" region
-    #And I should see the heading "Write to us" in the "contact_page_form" region
+    Then I should see CSS "#block-sitewidecontactform-2" in the "contact_page_form" region
+    And I should see the heading "Write to us" in the "contact_page_form" region
     #And I should see CSS "#contact-message-feedback-form" in the "contact_page_form" region
 
 
