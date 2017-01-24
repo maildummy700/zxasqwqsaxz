@@ -24,7 +24,7 @@ Feature: Automation for PAbout Us Page to reduce manual effort of manual testing
   @blackbox @3
   Scenario: Resource block each column
     Given I am on "/"
-    #Then I follow "About" in the "secondary_orange_menu_bar" region
+    Then I follow "About" in the "secondary_orange_menu_bar" region
     Then print current URL
 
     Then I should see CSS ".main-circle" in the "about_us_page_resource_block_column" region
