@@ -5,7 +5,7 @@ Feature: Automation for Contact  page to check various static things to reduce m
   Scenario: Redirection from homepage to Contact page.
     Given I am on "/"
     Then I follow "Contact" in the "secondary_orange_menu_bar" region
-    Then print current URL
+    #Then print current URL
     Then the response status code should be 200
 
   @blackbox @2
